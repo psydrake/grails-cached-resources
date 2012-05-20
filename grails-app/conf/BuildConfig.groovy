@@ -1,3 +1,4 @@
+grails.project.source.level = 1.6 // workaround for bug "javac: target release 1.6 conflicts with default source release 1.7"
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir	= "target/test-reports"
@@ -23,6 +24,9 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
+	plugins { 
+		runtime ":resources:1.1.6"
+	}
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 

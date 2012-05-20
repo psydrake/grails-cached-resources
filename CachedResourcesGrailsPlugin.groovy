@@ -1,5 +1,5 @@
 class CachedResourcesGrailsPlugin {
-    def version = "1.0"
+    def version = "1.0-skuloop"
 
     def grailsVersion = "1.2 > *"
     // the other plugins this plugin depends on

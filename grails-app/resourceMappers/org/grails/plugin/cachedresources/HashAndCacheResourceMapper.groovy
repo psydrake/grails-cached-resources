@@ -1,5 +1,6 @@
 package org.grails.plugin.cachedresources
 
+import java.nio.channels.*
 import org.codehaus.groovy.grails.plugins.codecs.SHA256BytesCodec
 import org.grails.plugin.cachedresources.util.Base62
 import org.grails.plugin.resource.mapper.MapperPhase
@@ -83,10 +84,10 @@ class HashAndCacheResourceMapper {
         }
 
         // Rename or copy here?
-        input.renameTo(target)
+		//input.renameTo(target)
+		copyFile(input, target)
         target
     }
-    
     
     /**
      * File.getBytes() was added in Groovy 1.7.1 - so we roll our own for Grails 1.2 support.
@@ -102,4 +103,31 @@ class HashAndCacheResourceMapper {
             bytes.toByteArray()
         }
     }
+
+	public static void copyFile(File sourceFile, File destFile) throws IOException {
+	    if(!destFile.exists()) {
+	        destFile.createNewFile();
+	    }
+
+	    FileChannel source = null;
+	    FileChannel destination = null;
+	    try {
+	        source = new FileInputStream(sourceFile).getChannel();
+	        destination = new FileOutputStream(destFile).getChannel();
+
+	        // previous code: destination.transferFrom(source, 0, source.size());
+	        // to avoid infinite loops, should be:
+	        long count = 0;
+	        long size = source.size();              
+	        while((count += destination.transferFrom(source, count, size-count))<size);
+	    }
+	    finally {
+	        if(source != null) {
+	            source.close();
+	        }
+	        if(destination != null) {
+	            destination.close();
+	        }
+	    }
+	}
 }

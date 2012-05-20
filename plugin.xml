@@ -1,0 +1,31 @@
+<plugin name='cached-resources' version='1.0-skuloop' grailsVersion='1.2 &gt; *'>
+  <author>Marc Palmer</author>
+  <authorEmail>marc@grailsrocks.com</authorEmail>
+  <title>Cached Resources</title>
+  <description>\
+Makes static resources browser-cacheable with unique filenames based on their content
+</description>
+  <documentation>http://grails.org/plugin/cached-resources</documentation>
+  <type>CachedResourcesGrailsPlugin</type>
+  <resources>
+    <resource>BootStrap</resource>
+    <resource>org.grails.plugin.cachedresources.HashAndCacheResourceMapper</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+  </repositories>
+  <dependencies />
+  <plugins>
+    <runtime>
+      <plugin group='org.grails.plugins' name='resources' version='1.1.6' />
+    </runtime>
+  </plugins>
+  <runtimePluginRequirements>
+    <plugin name='resources' version='1.0.RC3 &gt; *' />
+    <plugin name='cacheHeaders' version='1.0.4 &gt; *' />
+  </runtimePluginRequirements>
+  <behavior />
+</plugin>
